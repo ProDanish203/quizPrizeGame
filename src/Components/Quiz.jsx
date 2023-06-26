@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { data } from "../Assets/data";
+import { data, prizeData } from "../Assets/data";
 import { useNavigate } from 'react-router-dom';
 
-export const Quiz = ({ questionNo, setQuestionNo, timer, setTimer }) => {
+export const Quiz = ({ questionNo, setQuestionNo, setTimer, setEarned, quesTime }) => {
 
     const [question, setQuestion] = useState(null);
     const [selectedAnswer, setSelectedAnswer] = useState(null)
@@ -13,12 +13,16 @@ export const Quiz = ({ questionNo, setQuestionNo, timer, setTimer }) => {
 
     useEffect(() => {
         setQuestion(data[questionNo])
+        questionNo > 0 &&
+            setEarned(prizeData[questionNo - 1])
     }, [questionNo])
-    
+
+
     const selectAnswer = (ans) => {
         setSelectedAnswer(ans)
+        console.log(ans)
         setTimeout(() => {
-            if(question.answer === ans){
+            if(question.answer.toLowerCase() === ans.toLowerCase()){
                 setClassName("answer correct")
                 setCorrect(true);
             }
@@ -27,19 +31,24 @@ export const Quiz = ({ questionNo, setQuestionNo, timer, setTimer }) => {
                 setCorrect(false);
             }
         }, 500);
-
+        console.log(selectedAnswer)
+        console.log(correct)
         setTimeout(() => {
             if(!correct){
                 setQuestionNo(prev => prev+1);
                 setSelectedAnswer(null);
+                setCorrect(true)
+                return
             }
             else if(correct){
+                setTimer(true)
                 alert("Game Over")
-                // navigate("/");
+                setCorrect(false)
+                return
             }
         }, 4000);
-
     }
+    
 
   return (
     <>
@@ -48,7 +57,7 @@ export const Quiz = ({ questionNo, setQuestionNo, timer, setTimer }) => {
         <div className='relative w-full h-full flex flex-col justify-end pb-10 sm:px-10 px-3'>
 
             <div className='bg-transparent rounded-full flex items-center justify-center text-white font-bold text-xl border-gray-200 border-2 w-16 h-16 mb-10'>
-                50
+                {quesTime}
             </div>
 
             <div className='bg-purple-900 w-full text-center py-4 rounded text-md text-white font-semibold question'>

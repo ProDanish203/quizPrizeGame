@@ -11,12 +11,12 @@ export const data = [
     },
     {
         question: "What is your age",
-        answer: 20,
+        answer: "20",
         options: [
-            17,
-            20,
-            18,
-            19
+            "17",
+            "20",
+            "18",
+            "19"
         ]
     },
     // {
