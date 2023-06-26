@@ -1,38 +1,61 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+/* font-family: 'Poppins', sans-serif; */
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: .2s;
+  font-family: 'Poppins', sans-serif;
+  text-transform: capitalize;
+  text-decoration: none;
+  -webkit-transition: .2s;
+  -moz-transition: .2s;
+  -ms-transition: .2s;
+  -o-transition: .2s;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+html{
+  overflow-x: hidden;
+  scroll-behavior: smooth;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+body{
+  overflow-x: hidden;
+  min-height: 100vh;  
+  width: 100%;
+}
+.question{
+  letter-spacing: 2px;
+}
+.answer:hover, .answer.active{
+  background-color: #9e0b9e;
+}
+.answer.correct{
+  animation: correct 2s ease forwards;
+  -webkit-animation: correct 2s ease forwards;
+}
+.answer.wrong{
+  animation: wrong 2s ease forwards;
+  -webkit-animation: wrong 2s ease forwards;
+}
+@keyframes correct {
+  0%, 10%, 30%, 50%, 70%, 90%{
+    background-color: #9e0b9e;
+  }
+  20%, 40%, 60%, 80%{
+    background-color: #6b21a8;
+  }
+  100%{
+    background-color: #16a34a;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@keyframes wrong {
+  0%, 10%, 30%, 50%, 70%, 90%{
+    background-color: #9e0b9e;
   }
-  to {
-    transform: rotate(360deg);
+  20%, 40%, 60%, 80%{
+    background-color: #6b21a8;
+  }
+  100%{
+    background-color: #c71010;
   }
 }
